@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models import UniqueConstraint, F, functions
 
 
 class User(AbstractUser):
@@ -93,3 +94,11 @@ class Message(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                functions.Greatest(F('user_1'), F('user_2')),
+                functions.Least(F('user_1'), F('user_2')),
+                name="users_chat_unique",
+            ),
+        ]
