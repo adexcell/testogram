@@ -79,6 +79,15 @@ class Chat(models.Model):
         related_name="chats_as_user2",
     )
     
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                functions.Greatest(F('user_1'), F('user_2')),
+                functions.Least(F('user_1'), F('user_2')),
+                name="users_chat_unique",
+            ),
+        ]
+    
 
 class Message(models.Model):
     content = models.TextField()
@@ -94,11 +103,3 @@ class Message(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                functions.Greatest(F('user_1'), F('user_2')),
-                functions.Least(F('user_1'), F('user_2')),
-                name="users_chat_unique",
-            ),
-        ]
