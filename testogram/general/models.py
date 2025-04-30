@@ -65,3 +65,16 @@ class Reaction(models.Model):
             ),
         ]
         
+
+class Chat(models.Model):
+    user_1 = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name="chats_as_user1",
+    )
+    user_2 = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name="chats_as_user2",
+    )
+    
