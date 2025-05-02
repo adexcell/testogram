@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'general',
     'rangefilter',
     'admin_auto_filters',
+    'django_admin_listfilter_dropdown',
 ]
 
 MIDDLEWARE = [

@@ -209,3 +209,8 @@ class ReactionModelAdmin(admin.ModelAdmin):
         "value",
     )
     
+    list_filter = (
+        AuthorFilter,
+        PostFilter,
+        "value",
+    )
