@@ -135,7 +135,6 @@ class PostModelAdmin(admin.ModelAdmin):
     search_fields = (
         "id",
         "title",
-        "author__username",
     )
     
     list_filter = (
