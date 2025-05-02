@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
+from rangefilter.filters import DateRangeFilter
 from general.models import (
     Post,
     User,
@@ -97,7 +98,7 @@ class UserModelAdmin(admin.ModelAdmin):
         "is_staff",
         "is_superuser",
         "is_active",
-        "date_joined",
+        ("date_joined", DateRangeFilter),
     )
 
 
