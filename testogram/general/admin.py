@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from rangefilter.filters import DateRangeFilter
+from general.filters import AuthorFilter
 from general.models import (
     Post,
     User,
@@ -135,6 +136,11 @@ class PostModelAdmin(admin.ModelAdmin):
         "id",
         "title",
         "author__username",
+    )
+    
+    list_filter = (
+        AuthorFilter,
+        ("created_at", DateRangeFilter),
     )
     
     def get_body(self, obj):

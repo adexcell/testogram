@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'general',
     'rangefilter',
+    'admin_auto_filters',
 ]
 
 MIDDLEWARE = [
