@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from rangefilter.filters import DateRangeFilter
 from general.filters import AuthorFilter, PostFilter
+from django_admin_listfilter_dropdown.filters import ChoiceDropdownFilter
 from general.models import (
     Post,
     User,
@@ -212,5 +213,5 @@ class ReactionModelAdmin(admin.ModelAdmin):
     list_filter = (
         AuthorFilter,
         PostFilter,
-        "value",
+        ("value", ChoiceDropdownFilter),
     )
