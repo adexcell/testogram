@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from rangefilter.filters import DateRangeFilter
-from general.filters import AuthorFilter
+from general.filters import AuthorFilter, PostFilter
 from general.models import (
     Post,
     User,
@@ -184,9 +184,9 @@ class CommentModelAdmin(admin.ModelAdmin):
         "get_post_title",
     )
     
-    search_fields = (
-        "post__title",
-        "author__username",
+    list_filter = (
+        AuthorFilter,
+        PostFilter,
     )
     
     def get_post_title(self, obj):
@@ -208,3 +208,4 @@ class ReactionModelAdmin(admin.ModelAdmin):
         "id",
         "value",
     )
+    
