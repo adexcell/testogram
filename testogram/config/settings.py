@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'admin_auto_filters',
     'django_admin_listfilter_dropdown',
     'debug_toolbar',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,7 @@ AUTH_USER_MODEL = 'general.User'
 INTERNAL_IPS = [
     "127.0.0.1"
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectular.openapi.AutoSchema',
+}

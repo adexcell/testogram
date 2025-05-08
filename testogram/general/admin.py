@@ -155,6 +155,9 @@ class PostModelAdmin(admin.ModelAdmin):
         return obj.comments.count()
     
     get_comment.short_description = "comments count"
+    
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related("comments")
 
 
 @admin.register(Comment)
@@ -190,6 +193,11 @@ class CommentModelAdmin(admin.ModelAdmin):
         PostFilter,
     )
     
+    raw_id_fields = (
+        "author",
+        "post",
+    )
+    
     def get_post_title(self, obj):
         return obj.post.title
     
@@ -214,4 +222,9 @@ class ReactionModelAdmin(admin.ModelAdmin):
         AuthorFilter,
         PostFilter,
         ("value", ChoiceDropdownFilter),
+    )
+    
+    autocomplete_fields = (
+        "author",
+        "post",
     )
